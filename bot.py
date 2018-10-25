@@ -6,7 +6,13 @@ BOT_TOKEN = "660361487:AAFBBtv8y1pfqY-pPekyT3Qbom9RMWD0Glg"
 
 # Настройки
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-updater = Updater(token=BOT_TOKEN) # Токен API к Telegram
+import os
+
+BOT_TOKEN = "TOKEN"
+PORT = int(os.environ.get('PORT', '8443'))
+updater = Updater(BOT_TOKEN)
+
+
 dispatcher = updater.dispatcher
 
 import logging
@@ -52,7 +58,12 @@ dispatcher.add_handler(start_command_handler)
 dispatcher.add_handler(text_message_handler)
 
 # Начинаем поиск обновлений
-updater.start_polling(clean=True)
+#updater.start_polling(clean=True)
+
+updater.start_webhook(listen="0.0.0.0",
+                      port=PORT,
+                      url_path=BOT_TOKEN)
+updater.bot.set_webhook("https://peaceful-hamlet-47591.herokuapp.com/" + BOT_TOKEN)
 
 # Останавливаем бота, если были нажаты Ctrl + C
 updater.idle()
