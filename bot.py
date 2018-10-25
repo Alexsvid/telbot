@@ -35,7 +35,7 @@ class CalcBot:
 
 
 
-#calc = CalcBot()
+calc = CalcBot()
 
 
 # Обработка команд
@@ -43,9 +43,9 @@ def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся?')
 
 def textMessage(bot, update):
- #   calc.calulate(update.message.text)
- #   response = '>> ' + update.message.text + ' = ' + calc.Value
-    response = '>> ' + update.message.text
+    calc.calulate(update.message.text)
+    response = '>> ' + update.message.text + ' = ' + calc.Value
+#    response = '>> ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
 
