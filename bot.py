@@ -8,7 +8,7 @@ BOT_TOKEN = "660361487:AAFBBtv8y1pfqY-pPekyT3Qbom9RMWD0Glg"
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
 
-BOT_TOKEN = "TOKEN"
+#BOT_TOKEN = "TOKEN"
 PORT = int(os.environ.get('PORT', '8443'))
 updater = Updater(BOT_TOKEN)
 
