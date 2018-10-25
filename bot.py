@@ -52,7 +52,7 @@ dispatcher.add_handler(start_command_handler)
 dispatcher.add_handler(text_message_handler)
 
 # Начинаем поиск обновлений
-updater.start_polling(clean=True)
+updater.start_polling(clean=False)
 
 # Останавливаем бота, если были нажаты Ctrl + C
 updater.idle()
