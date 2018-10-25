@@ -44,7 +44,7 @@ def startCommand(bot, update):
 
 def textMessage(bot, update):
     calc.calulate(update.message.text)
-    response = '>> ' + update.message.text + ' = ' + calc.Value
+    response = '>> ' + update.message.text + ' = %s' % calc.Value
 #    response = '>> ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
