@@ -20,10 +20,10 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 class CalcBot:
-    Value = 0
+    Value = 0.0
     def __init__(self):
         self.db = shelve.open("base.txt")
-        self.Value = self.db["Value"]
+        self.Value = self.db.get("Value", 0.0)
         logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
     def parseValue(self, text):
