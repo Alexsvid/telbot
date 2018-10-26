@@ -64,6 +64,7 @@ text_message_handler = MessageHandler(Filters.text, textMessage)
 
 # Добавляем хендлеры в диспетчер
 dispatcher.add_handler(start_command_handler)
+dispatcher.add_handler(list_command_handler)
 dispatcher.add_handler(text_message_handler)
 
 # Начинаем поиск обновлений
