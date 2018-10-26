@@ -42,15 +42,24 @@ calc = CalcBot()
 def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся?')
 
+def listCommand(bot, update):
+    list = ""
+    for i  in [1,2,3]:
+        list += "-- list %d" % i
+    list += "curent value = %8.2f" % calc.Value
+
+    bot.send_message(chat_id=update.message.chat_id, text=list)
+
 def textMessage(bot, update):
     calc.calulate(update.message.text)
-    response = '>> ' + update.message.text + ' = %s' % calc.Value
+    response = '>> ' + update.message.text + '\n = %10.2s' % calc.Value
 #    response = '>> ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
 
 # Хендлеры
 start_command_handler = CommandHandler('start', startCommand)
+list_command_handler = CommandHandler('list', listCommand)
 text_message_handler = MessageHandler(Filters.text, textMessage)
 
 # Добавляем хендлеры в диспетчер
