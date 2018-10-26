@@ -24,16 +24,16 @@ class CalcBot:
         self.Value = 0
 
     def parseValue(self, text):
+        v = text.split()[0]
+        t = text.split()[1:]
         try:
-            return float(text)
+            return (float(v), t)
         except ValueError:
-            return 0.0
+            return (0.0, t)
 
     def calulate(self, text):
-        v = self.parseValue(text)
+        v = self.parseValue(text)[0]
         self.Value += v
-
-
 
 calc = CalcBot()
 
