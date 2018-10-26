@@ -21,8 +21,9 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 
 class CalcBot:
     Value = 0.0
+
     def __init__(self):
-        self.db = shelve.open("base.txt")
+        self.db = shelve.open("base.txt", flag="c")
         self.Value = self.db.get("Value", 0.0)
         logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
