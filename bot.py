@@ -38,6 +38,7 @@ class CalcBot:
         v = self.parseValue(text)[0]
         self.Value += v
         self.db["Value"] = self.Value
+        self.db.sync()
 
     def __del__(self):
         self.db.close()
