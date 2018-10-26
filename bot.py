@@ -45,7 +45,7 @@ def startCommand(bot, update):
 def listCommand(bot, update):
     list = ""
     for i  in [1,2,3]:
-        list += "-- list %d" % i
+        list += "-- list %d \n" % i
     list += "curent value = %8.2f" % calc.Value
 
     bot.send_message(chat_id=update.message.chat_id, text=list)
