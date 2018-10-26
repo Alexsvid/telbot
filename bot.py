@@ -7,6 +7,7 @@ BOT_TOKEN = "660361487:AAFBBtv8y1pfqY-pPekyT3Qbom9RMWD0Glg"
 # Настройки
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
+import shelve
 
 #BOT_TOKEN = "TOKEN"
 PORT = int(os.environ.get('PORT', '8443'))
@@ -21,7 +22,9 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 class CalcBot:
     Value = 0
     def __init__(self):
-        self.Value = 0
+        self.db = shelve.open("base.txt")
+        self.Value = self.db["Value"]
+        logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
     def parseValue(self, text):
         v = text.split()[0]
@@ -34,6 +37,10 @@ class CalcBot:
     def calulate(self, text):
         v = self.parseValue(text)[0]
         self.Value += v
+        self.db["Value"] = self.Value
+
+    def __del__(self):
+        self.db.close()
 
 calc = CalcBot()
 
@@ -46,13 +53,13 @@ def listCommand(bot, update):
     list = ""
     for i  in [1,2,3]:
         list += "-- list %d \n" % i
-    list += "curent value = %8.2f" % calc.Value
+    list += "curent value = %10.2f" % calc.Value
 
     bot.send_message(chat_id=update.message.chat_id, text=list)
 
 def textMessage(bot, update):
     calc.calulate(update.message.text)
-    response = '>> ' + update.message.text + '\n = %10.2s' % calc.Value
+    response = '>> ' + update.message.text + '\n = %10.2f' % calc.Value
 #    response = '>> ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
