@@ -61,7 +61,7 @@ def listCommand(bot, update):
 
 def textMessage(bot, update):
     calc.calulate(update.message.text)
-    response = '>> ' + update.message.text + '\n = %10.2f' % calc.Value
+    response = '>>> ' + update.message.text + '\n = %10.2f' % calc.Value
 #    response = '>> ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
