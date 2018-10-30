@@ -5,9 +5,11 @@ chardet==3.0.4
 cryptography==2.3.1
 future==0.16.0
 idna==2.7
+py-postgresql==1.2.1
 pycparser==2.19
 pyTelegramBotAPI==3.6.6
 python-telegram-bot==11.1.0
+redis==2.10.6
 requests==2.20.0
 six==1.11.0
 urllib3==1.24
