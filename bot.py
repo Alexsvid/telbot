@@ -10,7 +10,7 @@ import os
 import shelve
 
 
-from DB import BotDatabase
+#from DB import BotDatabase
 
 #BOT_TOKEN = "TOKEN"
 PORT = int(os.environ.get('PORT', '8443'))
@@ -53,10 +53,10 @@ calc = CalcBot()
 # Обработка команд
 def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся?')
-    db = BotDatabase()
+#    db = BotDatabase()
     bot.send_message(chat_id=update.message.chat_id, text='--init DB--')
-    v = db.getValue()
-    bot.send_message(chat_id=update.message.chat_id, text='-- DB Value -- %f' % v)
+#    v = db.getValue()
+#    bot.send_message(chat_id=update.message.chat_id, text='-- DB Value -- %f' % v)
 
 def listCommand(bot, update):
     list = ""
