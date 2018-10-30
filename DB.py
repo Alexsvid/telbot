@@ -32,7 +32,7 @@ class BotDatabase:
         v = self.cur.fetchone()
         logging.log(logging.DEBUG, "-- value from DB %s" % ''.join(map(str, v)))
         try:
-            return float(v)
+            return float(v[0])
         except:
             return 0.0
 
