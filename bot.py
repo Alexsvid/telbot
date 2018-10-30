@@ -52,7 +52,7 @@ calc = CalcBot()
 
 # Обработка команд
 def startCommand(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся?')
+    bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся? \n %s' % os.environ['DATABASE_URL'])
     db = BotDatabase()
     bot.send_message(chat_id=update.message.chat_id, text='--init DB--')
     v = db.getValue()
