@@ -7,7 +7,6 @@ BOT_TOKEN = "660361487:AAFBBtv8y1pfqY-pPekyT3Qbom9RMWD0Glg"
 # Настройки
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
-import shelve
 
 
 from DB import BotDatabase
@@ -26,8 +25,8 @@ class CalcBot:
     Value = 0.0
 
     def __init__(self):
-        self.db = shelve.open("base.txt", flag="c")
-        self.Value = self.db.get("Value", 0.0)
+        self.db = BotDatabase()
+        self.Value = db.getValue()
         logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
     def parseValue(self, text):
@@ -41,11 +40,10 @@ class CalcBot:
     def calulate(self, text):
         v = self.parseValue(text)[0]
         self.Value += v
-        self.db["Value"] = self.Value
-        self.db.sync()
+        self.db.setValue(self.Value)
 
     def __del__(self):
-        self.db.close()
+        pass #self.db.close()
 
 calc = CalcBot()
 
@@ -53,10 +51,6 @@ calc = CalcBot()
 # Обработка команд
 def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся? \n %s' % os.environ['DATABASE_URL'])
-    db = BotDatabase()
-    bot.send_message(chat_id=update.message.chat_id, text='--init DB--')
-    v = db.getValue()
-    bot.send_message(chat_id=update.message.chat_id, text='-- DB Value -- %f' % v)
 
 def listCommand(bot, update):
     list = ""
