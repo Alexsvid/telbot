@@ -21,4 +21,8 @@ class BotDatabase:
 
     def getValue(self):
         self.cur.execute("SELECT Value FROM TVALUE")
-        return self.cur.fetchone()
+        v = self.cur.fetchone()
+        try:
+            return float(v)
+        except:
+            return 0.0
