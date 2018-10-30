@@ -26,7 +26,7 @@ class CalcBot:
 
     def __init__(self):
         self.db = BotDatabase()
-        self.Value = db.getValue()
+        self.Value = self.db.getValue()
         logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
     def parseValue(self, text):
