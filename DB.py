@@ -18,6 +18,13 @@ class BotDatabase:
         self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         self.cur = self.conn.cursor()
         self.cur.execute("CREATE TABLE IF NOT EXISTS TVALUE (id SERIAL PRIMARY KEY, Value float)")
+
+        self.cur.execute("SELECT Value FROM TVALUE")
+        v = self.cur.fetchone()
+        if v is None:
+            self.cur.execute("INSERT INTO TVALUE (Value) VALUES (0) ")
+            self.conn.commit();
+
         self.cur.execute("CREATE TABLE IF NOT EXISTS TLOG (id SERIAL PRIMARY KEY, opDate timestamp, opTag char(20),  opVALUE float)")
 
     def getValue(self):
