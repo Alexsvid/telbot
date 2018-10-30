@@ -20,5 +20,5 @@ class BotDatabase:
         self.cur.execute("CREATE TABLE IF NOT EXISTS TLOG (id SERIAL PRIMARY KEY, opDate timestamp, opTag char(20),  opVALUE float)")
 
     def getValue(self):
-        self.cur.query("SELECT Value FROM TVALUE")
+        self.cur.execute("SELECT Value FROM TVALUE")
         return self.cur.fetchone()
