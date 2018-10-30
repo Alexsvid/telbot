@@ -2,6 +2,7 @@ __author__ = 'alexsviridov'
 
 import psycopg2
 import os
+import logging
 
 
 #if __name__ == "__main__":
@@ -22,6 +23,7 @@ class BotDatabase:
     def getValue(self):
         self.cur.execute("SELECT Value FROM TVALUE")
         v = self.cur.fetchone()
+        logging.log(logging.DEBUG, "-- value from DB %s" % ''.join(map(str, v)))
         try:
             return float(v)
         except:
