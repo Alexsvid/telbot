@@ -55,7 +55,7 @@ def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся? \n %s' % os.environ['DATABASE_URL'])
     db = BotDatabase()
     bot.send_message(chat_id=update.message.chat_id, text='--init DB--')
-    v = db.getValue()
+    v = db.getValue()[0]
     bot.send_message(chat_id=update.message.chat_id, text='-- DB Value -- %f' % v)
 
 def listCommand(bot, update):

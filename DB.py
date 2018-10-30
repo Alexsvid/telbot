@@ -1,6 +1,6 @@
 __author__ = 'alexsviridov'
 
-import postgresql
+import psycopg2
 import os
 
 
@@ -14,9 +14,11 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 class BotDatabase:
     def __init__(self):
-        self.db = postgresql.open(DATABASE_URL)
-        self.db.execute("CREATE TABLE IF NOT EXISTS TVALUE (id SERIAL PRIMARY KEY, Value float")
-        self.db.execute("CREATE TABLE IF NOT EXISTS TLOG (id SERIAL PRIMARY KEY, opDate timestamp, opTag char(20),  opVALUE float")
+        self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        self.cur = self.conn.cursor()
+        self.cur.execute("CREATE TABLE IF NOT EXISTS TVALUE (id SERIAL PRIMARY KEY, Value float")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS TLOG (id SERIAL PRIMARY KEY, opDate timestamp, opTag char(20),  opVALUE float")
 
     def getValue(self):
-        return self.db.query("SELECT Value FROM TVALUE")
+        self.cur.query("SELECT Value FROM TVALUE")
+        return self.cur.fetchone()

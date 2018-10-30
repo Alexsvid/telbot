@@ -5,6 +5,7 @@ chardet==3.0.4
 cryptography==2.3.1
 future==0.16.0
 idna==2.7
+psycopg2==2.7.5
 py-postgresql==1.2.1
 pycparser==2.19
 pyTelegramBotAPI==3.6.6
