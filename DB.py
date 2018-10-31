@@ -42,6 +42,6 @@ class BotDatabase:
         self.conn.commit()
 
     def setLog(self, value, text):
-        self.cur.execute("INSERT INTO TLOG  (opDate, opTag, opVALUEs) VALUES (%s %s %s) ",
+        self.cur.execute("INSERT INTO TLOG  (opDate, opTag, opVALUEs) VALUES (%s, %s, %s) ",
                          (datetime.datetime.now(), text, value))
         self.conn.commit()

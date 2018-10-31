@@ -32,6 +32,10 @@ class CalcBot:
     def parseValue(self, text):
         v = text.split()[0]
         t = text.split()[1:]
+        if t == {}:
+            t = "----"
+        else:
+            t = t[:20]
         try:
             return (float(v), t)
         except ValueError:
