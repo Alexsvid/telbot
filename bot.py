@@ -41,6 +41,7 @@ class CalcBot:
         v = self.parseValue(text)[0]
         self.Value += v
         self.db.setValue(self.Value)
+        self.db.setLog(self.Value, self.parseValue(text)[1])
 
     def __del__(self):
         pass #self.db.close()

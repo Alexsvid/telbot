@@ -3,6 +3,7 @@ __author__ = 'alexsviridov'
 import psycopg2
 import os
 import logging
+import datetime
 
 
 #if __name__ == "__main__":
@@ -23,7 +24,7 @@ class BotDatabase:
         v = self.cur.fetchone()
         if v is None:
             self.cur.execute("INSERT INTO TVALUE (Value) VALUES (0) ")
-            self.conn.commit();
+            self.conn.commit()
 
         self.cur.execute("CREATE TABLE IF NOT EXISTS TLOG (id SERIAL PRIMARY KEY, opDate timestamp, opTag char(20),  opVALUE float)")
 
@@ -37,6 +38,10 @@ class BotDatabase:
             return 0.0
 
     def setValue(self, value):
-        self.cur.execute("UPDATE TVALUE SET Value = %s " % value)
-        self.conn.commit();
+        self.cur.execute("UPDATE TVALUE SET Value = %s ", value)
+        self.conn.commit()
 
+    def setLog(self, value, text):
+        self.cur.execute("INSERT INTO TLOG  (opDate, opTag, opVALUEs) VALUES (%s %s %s) ",
+                         (datetime.datetime.now(), text, value))
+        self.conn.commit()
