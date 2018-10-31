@@ -47,5 +47,5 @@ class BotDatabase:
         self.conn.commit()
 
     def getLog(self):
-        self.cur.execute("SELECT * TLOG ORDER BY opDate")
+        self.cur.execute("SELECT * FROM TLOG ORDER BY opDate")
         return  self.cur
