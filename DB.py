@@ -38,7 +38,7 @@ class BotDatabase:
             return 0.0
 
     def setValue(self, value):
-        self.cur.execute("UPDATE TVALUE SET Value = %s ", value)
+        self.cur.execute("UPDATE TVALUE SET Value = %s ", (value,))
         self.conn.commit()
 
     def setLog(self, value, text):
