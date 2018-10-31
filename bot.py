@@ -61,7 +61,7 @@ def listCommand(bot, update):
     cur = calc.db.getLog()
     list = ""
     for record in cur:
-        list += "{:%d-%m-%Y %H:%M}, {}, {:.2} \n".format( record[1], record[2], record[3] )
+        list += "{:%d-%m-%Y %H:%M}, {:20}, {:.2f} \n".format( record[1], record[2].trim(), record[3] )
     list += "current value = %10.2f" % calc.Value
 
     bot.send_message(chat_id=update.message.chat_id, text=list)
