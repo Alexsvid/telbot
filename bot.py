@@ -36,16 +36,19 @@ class CalcBot:
             t = "----"
         else:
             t = t[:20]
+
+        logging.log(logging.DEBUG, "--parse % --  %s" % (v,t))
+
         try:
             return (float(v), t)
         except ValueError:
             return (0.0, t)
 
     def calulate(self, text):
-        v = self.parseValue(text)[0]
-        self.Value += v
+        p = self.parseValue(text)
+        self.Value += p[0]
         self.db.setValue(self.Value)
-        self.db.setLog(self.Value, self.parseValue(text)[1])
+        self.db.setLog(self.Value, p[1])
 
     def __del__(self):
         pass #self.db.close()
