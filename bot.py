@@ -30,12 +30,9 @@ class CalcBot:
         logging.log(logging.DEBUG, "--load value from DB %s" % self.Value)
 
     def parseValue(self, text):
-        v = text.split()[0]
-        t = text.split()[1:]
-        if t == {}:
-            t = "----"
-        else:
-            t = t[:20]
+        s = text.split()
+        v = s[0]
+        t = " ".join(s[1:])[:20]
 
         logging.log(logging.DEBUG, "--parse %s --  %s" % (v,t))
 
@@ -48,7 +45,7 @@ class CalcBot:
         p = self.parseValue(text)
         self.Value += p[0]
         self.db.setValue(self.Value)
-        self.db.setLog(self.Value, p[1])
+        self.db.setLog(p[0], p[1])
 
     def __del__(self):
         pass #self.db.close()
