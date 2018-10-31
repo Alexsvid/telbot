@@ -37,7 +37,7 @@ class CalcBot:
         else:
             t = t[:20]
 
-        logging.log(logging.DEBUG, "--parse % --  %s" % (v,t))
+        logging.log(logging.DEBUG, "--parse %s --  %s" % (v,t))
 
         try:
             return (float(v), t)
