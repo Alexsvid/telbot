@@ -58,9 +58,10 @@ def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Привет, давай пообщаемся? \n %s' % os.environ['DATABASE_URL'])
 
 def listCommand(bot, update):
+    cur = calc.db.getLog()
     list = ""
-    for i  in [1,2,3]:
-        list += "-- list %d \n" % i
+    for record in cur:
+        list += "-- %d, %s, %s, %f \n" % record
     list += "current value = %10.2f" % calc.Value
 
     bot.send_message(chat_id=update.message.chat_id, text=list)

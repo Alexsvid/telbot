@@ -45,3 +45,7 @@ class BotDatabase:
         self.cur.execute("INSERT INTO TLOG  (opDate, opTag, opVALUE) VALUES (%s, %s, %s) ",
                          (datetime.datetime.now(), text, value))
         self.conn.commit()
+
+    def getLog(self):
+        self.cur.execute("SELECT * TLOG ORDER BY opDate")
+        return  self.cur
